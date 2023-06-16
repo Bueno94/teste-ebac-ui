@@ -2,10 +2,16 @@
 
 context ('Funcionalidade login',  ()  =>{
   
-       it('Deve fazer login com sucesso', () => {
-             cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
-            
-
+     beforeEach(() => {
+          cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
+     });
+     
+     afterEach(() => {
+          cy.screenshot()
+     })
+     
+             it('Deve fazer login com sucesso', () => {
+             
              //login
              cy.get('#username').type('Aluno_ebac@teste.com')
              cy.get('#password').type('teste@teste.com')
@@ -16,10 +22,8 @@ context ('Funcionalidade login',  ()  =>{
              cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá')
             })  
             
-       it('Deve exibir uma mensagem de erro ao inserir usuario invalido', () => {
-            cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
+            it('Deve exibir uma mensagem de erro ao inserir usuario invalido', () => {
             
-
             //Erro usuario
             cy.get('#username').type('ebac@teste.com')
             cy.get('#password').type('teste@teste.com')
@@ -28,13 +32,10 @@ context ('Funcionalidade login',  ()  =>{
             cy.get('.woocommerce-error > li').should ('contain', 'Erro: a senha fornecida para o e-mail ')
 
             
-            
        })
 
-       it('Deve exibir uma mensagem de erro ao inserir senha invalido', () => {
-            cy.visit ('http://lojaebac.ebaconline.art.br/minha-conta/')
-            
-
+            it('Deve exibir uma mensagem de erro ao inserir senha invalido', () => {
+           
             //Erro senha
             cy.get('#username').type('Aluno_ebac@teste.com')
             cy.get('#password').type('teste@teste')
