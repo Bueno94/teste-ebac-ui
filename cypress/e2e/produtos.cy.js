@@ -3,7 +3,7 @@
 describe('Funcionalidade Pagina de produtos', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        cy.visit('/produtos')
 
     });
 
