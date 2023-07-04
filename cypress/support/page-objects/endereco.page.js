@@ -15,7 +15,7 @@ class EnderecoPage {
         cy.get('#select2-shipping_state-container').click().type(estado +'{enter}')
         cy.get('#shipping_postcode').clear().type(cep)
 
-        cy.get('.button').click()
+        cy.get(':nth-child(2) > .button').click()
         cy.get('.woocommerce-message').should('contain', 'Endereço alterado com sucesso.')
 
 
